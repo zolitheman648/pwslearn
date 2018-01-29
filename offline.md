@@ -11,7 +11,6 @@ npm install
 npm run serve
 
 ### Open ports
-localhost:8888 - Wittr
-
+localhost:8888 - Wittr  
 localhost: 8889 - Tester
 
