@@ -25,13 +25,32 @@ localhost: 8889 - Tester
 ```
 ## Service Worker
 ### Register and callbacks
-```
+```javascript
 navigator.serviceWorker.register('/sw.js').then(function(reg){
-  console.log('Yay!);
+  console.log('Yay!');
 }).catch(function(err){
-  console.log('Boo!);
+  console.log('Boo!');
 });
 ```
+
+It **won't re-register** if you call it twice, just _return a promise for the existing registration_.  
+
+### Scope
+```javascript
+navigator.serviceWorker.register('/sw.js', {
+  scope: '/myapp/'
+});
+```
+
+The service worker will control any page whose **URL begins with the scope** and will _ignore anything that don't_.  
+(Trailing slash also matters, so etc. `/my-app` isn't working)  
+
+The **default scope** is determined by _the location of the service worker script_.
+
+_What happens inside service workers???_
+
+### Listening to events
+
 
 ## Testing
 ### Testing words
