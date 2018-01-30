@@ -65,6 +65,26 @@ if(navigator.serviceWorker){
 }
 ```
 
+### Lifecycle
+
+#### Initialization
+Service Worker only takes control of pages when they're loaded.
+
+So it takes two refresh to see the results of service worker:  
+1. The browser downloads the script what registers the service worker.
+2. The browser load the whole page through the service worker (all requests has to go through the service worker)
+
+#### Update
+
+If the page loads via the Service Worker, it will check for an update to the service worker in the background.  
+And if it finds it has changed it becames the next version. But it doesn't take control, it waits.  
+It won't take over until all pages using the current version are gone. This ensures that there's only one version of your site running a given time like native apps.
+
+Because the service worker script goes through the browser cache, it is supposed to don't cache service worker script.
+If the browser cache is more than a day for a service worker it ignores that after 24 hours and checks for updates of the service worker in use.
+
+**Force reload service worker** without modifiyng origin: refresh while holding `Shift`
+
 ### Listening to events
 
 #### Fetch
@@ -83,4 +103,6 @@ self.addEventListener('fetch',function(){
 **demo**: the app is running  
 **offline**: the app is offline  
 **lie-fi**: the connection is lie-fi  
-**registered**: the service worker registered
+**registered**: the service worker registered  
+**sw-waiting**: service worker waiting  
+**sw-active**: the latest service worker is active  
