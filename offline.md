@@ -1,6 +1,6 @@
 # Learning Progressive Web Apps from Udacity
 ## Install and run project
-You need git and node.js to start the project.
+You need [git](https://git-scm.com/downloads) and [node.js](https://nodejs.org/) to start the project.
 ### Download from git
 ```
 git clone https://github.com/jakearchibald/wittr
