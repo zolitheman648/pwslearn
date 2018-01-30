@@ -2,7 +2,7 @@
 ## Install and run project
 
 ### Download from git
-```javascript
+```
 git clone https://github.com/jakearchibald/wittr
 ```
 
