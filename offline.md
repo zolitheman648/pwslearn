@@ -36,6 +36,9 @@ navigator.serviceWorker.register('/sw.js').then(function(reg){
 It **won't re-register** if you call it twice, just _return a promise for the existing registration_.  
 
 ### Scope
+
+You can have multiple service workers with different scopes, which is handy, when multiple projects share the same origin.
+
 ```javascript
 navigator.serviceWorker.register('/sw.js', {
   scope: '/myapp/'
@@ -43,11 +46,21 @@ navigator.serviceWorker.register('/sw.js', {
 ```
 
 The service worker will control any page whose **URL begins with the scope** and will _ignore anything that don't_.  
-(Trailing slash also matters, so etc. `/my-app` isn't working)  
+(Trailing slash also matters, so for example, `/my-app` isn't working)  
 
 The **default scope** is determined by _the location of the service worker script_.
 
-_What happens inside service workers???_
+### Feature detection
+
+Service worker is **progressive enhancement** friendly. 
+
+To check if the browser implements serviceWorker, you can use the following:
+
+```javascript
+if(navigator.serviceWorker){
+  navigator.serviceWorker.register('/sw.js');
+}
+```
 
 ### Listening to events
 
@@ -55,5 +68,5 @@ _What happens inside service workers???_
 ## Testing
 ### Testing words
 **demo**: the app is running  
-**offline**: the app is offline
+**offline**: the app is offline  
 **lie-fi**: the connection is lie-fi
