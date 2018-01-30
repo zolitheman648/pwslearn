@@ -131,17 +131,22 @@ The Fetch API performs a _normal browser fetch_ so the results may **come from t
 
 ##### More selective fetching
 
+Here we're returning a gif on 404 error and a text message when offline.
+
 ```javascript
-self.addEventListener('fetch', function(event){
+self.addEventListener('fetch', function(event) {
   event.respondWith(
-    fetch(event.request).then(function(response){
-      if(response.status == 404){
-        return new Response("Whoops, not found");
+    fetch(event.request).then(function(response) {
+      if (response.status === 404) {
+        // TODO: instead, respond with the gif at
+        // /imgs/dr-evil.gif
+        // using a network request
+        return fetch('/imgs/dr-evil.gif');
       }
       return response;
-    }).catch(function(){
+    }).catch(function() {
       return new Response("Uh oh, that totally failed!");
-    });
+    })
   );
 });
 ```
