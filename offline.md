@@ -24,7 +24,7 @@ localhost:8888 - Wittr
 localhost: 8889 - Tester
 ```
 
-# Testing
+## Testing
 ### Testing words
 **demo**: the app is running  
 **offline**: the app is offline
