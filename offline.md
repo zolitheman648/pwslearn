@@ -183,7 +183,7 @@ This operation is atomic. If **any of these fail to cache, none of them are adde
 ### Get something out of the cache
 
 ```javascript
-  cache.match(request);
+cache.match(request);
 ```
 This will return a promise for a matching response if one is found, or `null` otherwise.
 
@@ -192,7 +192,44 @@ caches.match(request);
 ```
 `caches.match` do the same, but it tries to find a match in any cache, starting with the oldest.
 
+### When to store cache - the _install_ event
 
+```javascript
+self.addEventListener('install', function(event){
+  event.waitUntil(promise);
+});
+```
+
+The install event occures whi
+
+### Example for storing and returning from cache
+
+```javascript
+self.addEventListener('install', function(event) {
+  event.waitUntil(
+    caches.open('wittr-static-v1').then(function(cache) {
+      return cache.addAll([
+        '/',
+        'js/main.js',
+        'css/main.css',
+        'imgs/icon.png',
+        'https://fonts.gstatic.com/s/roboto/v15/2UX7WLTfW3W8TclTUvlFyQ.woff',
+        'https://fonts.gstatic.com/s/roboto/v15/d-6IYplOFocCacKzxwXSOD8E0i7KZn-EPnyo3HZu7kw.woff'
+      ]);
+    })
+  );
+});
+
+self.addEventListener('fetch', function(event) {
+  event.respondWith(
+      caches.match(event.request).then(function(response){
+        if (response) return response;
+        return fetch(event.request);
+      })
+    
+  );
+});
+```
 
 ## Testing
 ### Testing words
