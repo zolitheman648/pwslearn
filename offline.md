@@ -126,7 +126,25 @@ fetch('/foo').then(function(response){
   console.log('It failed');
 });
 ```
+Fetch returns a promise that resolves to a response so it works very well with `respondWith`.  
+The Fetch API performs a _normal browser fetch_ so the results may **come from the cache.**
 
+##### More selective fetching
+
+```javascript
+self.addEventListener('fetch', function(event){
+  event.respondWith(
+    fetch(event.request).then(function(response){
+      if(response.status == 404){
+        return new Response("Whoops, not found");
+      }
+      return response;
+    }).catch(function(){
+      return new Response("Uh oh, that totally failed!");
+    });
+  );
+});
+```
 
 ## Testing
 ### Testing words
