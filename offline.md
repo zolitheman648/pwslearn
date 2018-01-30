@@ -23,8 +23,18 @@ npm run serve
 localhost:8888 - Wittr  
 localhost: 8889 - Tester
 ```
+## Service Worker
+### Register and callbacks
+```
+navigator.serviceWorker.register('/sw.js').then(function(reg){
+  console.log('Yay!);
+}).catch(function(err){
+  console.log('Boo!);
+});
+```
 
 ## Testing
 ### Testing words
 **demo**: the app is running  
 **offline**: the app is offline
+**lie-fi**: the connection is lie-fi
