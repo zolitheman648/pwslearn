@@ -231,6 +231,28 @@ self.addEventListener('fetch', function(event) {
 });
 ```
 
+### Deleting cache
+
+Return caches names:
+```javascript
+caches.keys();
+```
+`caches.keys` returns promises.
+
+Delete caches:
+```javascript
+caches.delete(cacheName);
+```
+
+When do we delete caches? On `activate` event:
+```javascript
+self.addEventListener('activate', function(event){
+  event.waitUntil(
+    
+  )
+});
+```
+
 ## Testing
 ### Testing words
 **demo**: the app is running  
