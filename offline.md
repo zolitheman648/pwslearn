@@ -98,6 +98,22 @@ self.addEventListener('fetch',function(){
 });
 ```
 
+### Responding to events
+
+#### respondWith
+```javascript
+self.addEventListener('fetch',function(event){
+  event.respondWith(
+    new Response('Hello <b>world</b>', {
+      headers: {'foo':'bar'}
+    })
+  );
+});
+```
+`event.respondeWith` takes a _Response_ object or a _promise that resolves with a response_.
+
+The **second parameter is an object** which has _**headers** property_.
+
 ## Testing
 ### Testing words
 **demo**: the app is running  
@@ -106,3 +122,4 @@ self.addEventListener('fetch',function(){
 **registered**: the service worker registered  
 **sw-waiting**: service worker waiting  
 **sw-active**: the latest service worker is active  
+**html-response**: there is a html response with class `a-winner-is-me`  
