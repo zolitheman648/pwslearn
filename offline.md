@@ -114,6 +114,20 @@ self.addEventListener('fetch',function(event){
 
 The **second parameter is an object** which has _**headers** property_.
 
+#### fetch
+
+It's way more modern and correct than XMLHttpRequest, for example:
+```javascript
+fetch('/foo').then(function(response){
+  return response.json();
+}).then(function(data){
+  console.log(data);
+}).catch(function(){
+  console.log('It failed');
+});
+```
+
+
 ## Testing
 ### Testing words
 **demo**: the app is running  
