@@ -25,6 +25,9 @@ localhost: 8889 - Tester
 ```
 ## Service Worker
 ### Register and callbacks
+
+Service workers **only work with HTTPS** except _on localhost_.
+
 ```javascript
 navigator.serviceWorker.register('/sw.js').then(function(reg){
   console.log('Yay!');
@@ -64,9 +67,20 @@ if(navigator.serviceWorker){
 
 ### Listening to events
 
+#### Fetch
+
+When the user navigates to a page within your service worker scope, all requests (html, css, js) trigger a fetch event.
+
+Logging all requests:  
+```javascript
+self.addEventListener('fetch',function(){
+  console.log(event.request);
+});
+```
 
 ## Testing
 ### Testing words
 **demo**: the app is running  
 **offline**: the app is offline  
-**lie-fi**: the connection is lie-fi
+**lie-fi**: the connection is lie-fi  
+**registered**: the service worker registered
