@@ -7,6 +7,7 @@ git clone https://github.com/jakearchibald/wittr
 ```
 
 ### Install and run (in directory)
+To follow the steps, you need to enter directory `wittr` after downloading project from git.
 #### Install dependencies
 ```
 npm install
