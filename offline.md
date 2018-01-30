@@ -138,9 +138,6 @@ self.addEventListener('fetch', function(event) {
   event.respondWith(
     fetch(event.request).then(function(response) {
       if (response.status === 404) {
-        // TODO: instead, respond with the gif at
-        // /imgs/dr-evil.gif
-        // using a network request
         return fetch('/imgs/dr-evil.gif');
       }
       return response;
@@ -150,6 +147,52 @@ self.addEventListener('fetch', function(event) {
   );
 });
 ```
+
+## The cache API
+
+### Open or create cache
+
+We're opening or creating (if not exists) a cache with the same function:
+```javascript
+caches.open('my-stuff').then(function(cache){
+  //..
+});
+```
+
+That returns a promise for a cache of that name. If I haven't opened a cache of that name before, it creates one and returns it.
+
+### Add request-response pairs to the cache
+
+Adding single pair:
+```javascript
+cache.put(request, response);
+```
+
+Adding multiple pairs:
+```javascript
+cache.addAll([
+  '/foo',
+  '/bar'
+]);
+```
+
+This operation is atomic. If **any of these fail to cache, none of them are added**.  
+
+`addAll` uses `fetch` under the hood so it goes via the browser cache.
+
+### Get something out of the cache
+
+```javascript
+  cache.match(request);
+```
+This will return a promise for a matching response if one is found, or `null` otherwise.
+
+```javascript
+caches.match(request);
+```
+`caches.match` do the same, but it tries to find a match in any cache, starting with the oldest.
+
+
 
 ## Testing
 ### Testing words
