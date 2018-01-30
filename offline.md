@@ -1,16 +1,17 @@
-# Install and run project
+#Learning Progressive Web Apps from Udacity
+##Install and run project
 
-## Download from git
+### Download from git
 git clone https://github.com/jakearchibald/wittr
 
-## Install and run (in directory)
-### Install dependencies
+### Install and run (in directory)
+#### Install dependencies
 npm install
 
-### Run project
+#### Run project
 npm run serve
 
-### Open ports
+#### Open ports
 localhost:8888 - Wittr  
 localhost: 8889 - Tester
 
